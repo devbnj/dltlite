@@ -1,0 +1,632 @@
+<script type="text/javascript">
+    "use strict";
+    /*global RED*/
+    RED.nodes.registerType('dblite-redisConfig', {
+        category: 'config',
+        defaults: {
+            name: {
+                value: "Local",
+                required: true
+            },
+            options: {
+                value: "{}",
+                required: true,
+                validate: RED.validators.typedInput("optionsType"),
+
+            },
+            cluster: {
+                value: false
+            },
+            optionsType: { value: "json" }
+        },
+        label: function () {
+            return this.name || "dblite-redis";
+        },
+        oneditprepare: function () {
+            $("#node-config-input-options").typedInput({
+                default: 'str',
+                typeField: $("#node-config-input-optionsType"),
+                types: ['str', 'env', 'json']
+            });
+
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="dblite-redisConfig">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-server"></i> Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-options"><i class="fa fa-random"></i> Options</label>
+        <input type="text" id="node-config-input-options">
+        <input type="hidden" id="node-config-input-optionsType">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-cluster">&nbsp;</label>
+        <input type="checkbox" id="node-config-input-cluster" style="display:inline-block; width:15px; vertical-align:baseline;"> Cluster
+    </div>
+</script>
+
+<script type="text/javascript">
+    /*global RED*/
+    RED.nodes.registerType('dblite-redis-in', {
+        category: 'storage',
+        inputs: 0,
+        outputs: 1,
+        color: "#e97b00",
+        icon: "redis.png",
+        paletteLabel: "dblite redis-in",
+        defaults: {
+            server: {
+                value: "",
+                type: "dblite-redisConfig"
+            },
+            command: {
+                value: "blpop"
+            },
+            name: {
+                value: ""
+            },
+            topic: {
+                value: "",
+                required: true
+            },
+            timeout: {
+                value: 0,
+                validate: RED.validators.number()
+            }
+        },
+        label: function () {
+            return this.name || this.topic || "dblite redis-in";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="dblite-redis-in">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="Server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-unlock"></i> Method</label>
+        <select id="node-input-command">
+            <option value="blpop" selected>BLPOP</option>
+            <option value="brpop">BRPOP</option>
+            <option value="subscribe">SUBSCRIBE</option>
+            <option value="psubscribe">PSUBSCRIBE</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-clock-o"></i> Timeout</label>
+        <input type="text" id="node-input-timeout" placeholder="Timeout">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="dblite-redis-in">
+    <p>dblite redis in</p>
+    <p>Acts as Subscriber, using BLPOP, SUBSCRIBE or PSUBSCRIBE</p>
+    <p>The msg.topic is pattern on all methods, separated by spaces.</p>
+    <p>Note: Only PSUBSCRIBE supports patterns with wildcards.</p>
+</script>
+
+
+<script type="text/javascript">
+    /*global RED*/
+    RED.nodes.registerType('dblite-redis-out', {
+        category: 'storage',
+        inputs: 1,
+        outputs: 0,
+        color: "#e97b00",
+        icon: "redis.png",
+        align: "right",
+        paletteLabel: "dblite redis-out",
+        defaults: {
+            server: {
+                value: "",
+                type: "dblite-redisConfig"
+            },
+            command: {
+                value: "rpush"
+            },
+            name: {
+                value: ""
+            },
+            topic: {
+                value: ""
+            }
+        },
+        label: function () {
+            return this.name || this.topic || "dblite redis-out";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="dblite-redis-out">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="Server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-unlock"></i> Method</label>
+        <select id="node-input-command">
+            <option value="rpush" selected>RPUSH</option>
+            <option value="lpush">LPUSH</option>
+            <option value="rpushx">RPUSHX</option>
+            <option value="lpushx">LPUSHX</option>
+            <option value="publish">PUBLISH</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="dblite-redis-out">
+    <p>Redis out</p>
+    <p>Acts as Publisher, using RPUSH, LPUSH or PUBLISH</p>
+    <p>The msg.topic is key name to publish.</p>
+    <p>Note: Output only works on PUBLISH and return number of subscribers.</p>
+</script>
+
+<script type="text/javascript">
+    /*global RED*/
+    RED.nodes.registerType('dblite-redis-command', {
+        category: 'storage',
+        inputs: 1,
+        outputs: 1,
+        color: "#e97b00",
+        icon: "redis.png",
+        paletteLabel: "dblite redis cmd",
+        defaults: {
+            server: {
+                value: "",
+                type: "dblite-redisConfig"
+            },
+            command: {
+                value: "set"
+            },
+            name: {
+                value: ""
+            },
+            topic: {
+                value: ""
+            },
+            params: {
+                value: "{}",
+                validate: RED.validators.typedInput("paramsType"),
+                required: false
+            },
+            paramsType: { value: "json" },
+            payloadType: {
+                value: "json"
+            },
+            block: {
+                value: false
+            }
+        },
+        label: function () {
+            return this.name || "redis " + this.command + " " + (this.topic || "");
+        },
+        oneditprepare: function () {
+            $("#node-input-params").typedInput({
+                default: 'json',
+                typeField: $("#node-input-paramsType"),
+                types: ['json']
+            });
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="dblite-redis-command">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="Server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic/Key</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-unlock"></i> Command</label>
+        <select id="node-input-command">
+            <option value="append">APPEND</option>
+            <option value="asking">ASKING</option>
+            <option value="auth">AUTH</option>
+            <option value="bgrewriteaof">BGREWRITEAOF</option>
+            <option value="bgsave">BGSAVE</option>
+            <option value="bitcount">BITCOUNT</option>
+            <option value="bitop">BITOP</option>
+            <option value="bitpos">BITPOS</option>
+            <option value="blpop">BLPOP</option>
+            <option value="brpop">BRPOP</option>
+            <option value="brpoplpush">BRPOPLPUSH</option>
+            <option value="client">CLIENT</option>
+            <option value="cluster">CLUSTER</option>
+            <option value="command">COMMAND</option>
+            <option value="config">CONFIG</option>
+            <option value="dbsize">DBSIZE</option>
+            <option value="debug">DEBUG</option>
+            <option value="decr">DECR</option>
+            <option value="decrby">DECRBY</option>
+            <option value="del">DEL</option>
+            <option value="discard">DISCARD</option>
+            <option value="dump">DUMP</option>
+            <option value="echo">ECHO</option>
+            <option value="eval">EVAL</option>
+            <option value="evalsha">EVALSHA</option>
+            <option value="exec">EXEC</option>
+            <option value="exists">EXISTS</option>
+            <option value="expire">EXPIRE</option>
+            <option value="expireat">EXPIREAT</option>
+            <option value="flushall">FLUSHALL</option>
+            <option value="flushdb">FLUSHDB</option>
+            <option value="geoadd">GEOADD</option>
+            <option value="geodist">GEODIST</option>
+            <option value="geohash">GEOHASH</option>
+            <option value="geopos">GEOPOS</option>
+            <option value="georadius">GEORADIUS</option>
+            <option value="georadiusbymember">GEORADIUSBYMEMBER</option>
+            <option value="get">GET</option>
+            <option value="getbit">GETBIT</option>
+            <option value="getrange">GETRANGE</option>
+            <option value="getset">GETSET</option>
+            <option value="hdel">HDEL</option>
+            <option value="hexists">HEXISTS</option>
+            <option value="hget">HGET</option>
+            <option value="hgetall">HGETALL</option>
+            <option value="hincrby">HINCRBY</option>
+            <option value="hincrbyfloat">HINCRBYFLOAT</option>
+            <option value="hkeys">HKEYS</option>
+            <option value="hlen">HLEN</option>
+            <option value="hmget">HMGET</option>
+            <option value="hmset">HMSET</option>
+            <option value="hscan">HSCAN</option>
+            <option value="hset">HSET</option>
+            <option value="hsetnx">HSETNX</option>
+            <option value="hstrlen">HSTRLEN</option>
+            <option value="hvals">HVALS</option>
+            <option value="incr">INCR</option>
+            <option value="incrby">INCRBY</option>
+            <option value="incrbyfloat">INCRBYFLOAT</option>
+            <option value="info">INFO</option>
+            <option value="keys">KEYS</option>
+            <option value="lastsave">LASTSAVE</option>
+            <option value="latency">LATENCY</option>
+            <option value="lindex">LINDEX</option>
+            <option value="linsert">LINSERT</option>
+            <option value="llen">LLEN</option>
+            <option value="lpop">LPOP</option>
+            <option value="lpush">LPUSH</option>
+            <option value="lpushx">LPUSHX</option>
+            <option value="lrange">LRANGE</option>
+            <option value="lrem">LREM</option>
+            <option value="lset">LSET</option>
+            <option value="ltrim">LTRIM</option>
+            <option value="mget">MGET</option>
+            <option value="migrate">MIGRATE</option>
+            <option value="monitor">MONITOR</option>
+            <option value="move">MOVE</option>
+            <option value="mset">MSET</option>
+            <option value="msetnx">MSETNX</option>
+            <option value="multi">MULTI</option>
+            <option value="object">OBJECT</option>
+            <option value="persist">PERSIST</option>
+            <option value="pexpire">PEXPIRE</option>
+            <option value="pexpireat">PEXPIREAT</option>
+            <option value="pfadd">PFADD</option>
+            <option value="pfcount">PFCOUNT</option>
+            <option value="pfdebug">PFDEBUG</option>
+            <option value="pfmerge">PFMERGE</option>
+            <option value="pfselftest">PFSELFTEST</option>
+            <option value="ping">PING</option>
+            <option value="psetex">PSETEX</option>
+            <option value="psubscribe">PSUBSCRIBE</option>
+            <option value="psync">PSYNC</option>
+            <option value="pttl">PTTL</option>
+            <option value="publish">PUBLISH</option>
+            <option value="pubsub">PUBSUB</option>
+            <option value="punsubscribe">PUNSUBSCRIBE</option>
+            <option value="randomkey">RANDOMKEY</option>
+            <option value="readonly">READONLY</option>
+            <option value="readwrite">READWRITE</option>
+            <option value="rename">RENAME</option>
+            <option value="renamenx">RENAMENX</option>
+            <option value="replconf">REPLCONF</option>
+            <option value="restore">RESTORE</option>
+            <option value="restore-asking">RESTORE-ASKING</option>
+            <option value="role">ROLE</option>
+            <option value="rpop">RPOP</option>
+            <option value="rpoplpush">RPOPLPUSH</option>
+            <option value="rpush">RPUSH</option>
+            <option value="rpushx">RPUSHX</option>
+            <option value="sadd">SADD</option>
+            <option value="save">SAVE</option>
+            <option value="scan">SCAN</option>
+            <option value="scard">SCARD</option>
+            <option value="script">SCRIPT</option>
+            <option value="sdiff">SDIFF</option>
+            <option value="sdiffstore">SDIFFSTORE</option>
+            <option value="select">SELECT</option>
+            <option value="set">SET</option>
+            <option value="setbit">SETBIT</option>
+            <option value="setex">SETEX</option>
+            <option value="setnx">SETNX</option>
+            <option value="setrange">SETRANGE</option>
+            <option value="shutdown">SHUTDOWN</option>
+            <option value="sinter">SINTER</option>
+            <option value="sinterstore">SINTERSTORE</option>
+            <option value="sismember">SISMEMBER</option>
+            <option value="slaveof">SLAVEOF</option>
+            <option value="slowlog">SLOWLOG</option>
+            <option value="smembers">SMEMBERS</option>
+            <option value="smove">SMOVE</option>
+            <option value="sort">SORT</option>
+            <option value="spop">SPOP</option>
+            <option value="srandmember">SRANDMEMBER</option>
+            <option value="srem">SREM</option>
+            <option value="sscan">SSCAN</option>
+            <option value="strlen">STRLEN</option>
+            <option value="subscribe">SUBSCRIBE</option>
+            <option value="substr">SUBSTR</option>
+            <option value="sunion">SUNION</option>
+            <option value="sunionstore">SUNIONSTORE</option>
+            <option value="sync">SYNC</option>
+            <option value="time">TIME</option>
+            <option value="ttl">TTL</option>
+            <option value="type">TYPE</option>
+            <option value="unsubscribe">UNSUBSCRIBE</option>
+            <option value="unwatch">UNWATCH</option>
+            <option value="wait">WAIT</option>
+            <option value="watch">WATCH</option>
+            <option value="zadd">ZADD</option>
+            <option value="zcard">ZCARD</option>
+            <option value="zcount">ZCOUNT</option>
+            <option value="zincrby">ZINCRBY</option>
+            <option value="zinterstore">ZINTERSTORE</option>
+            <option value="zlexcount">ZLEXCOUNT</option>
+            <option value="zrange">ZRANGE</option>
+            <option value="zrangebylex">ZRANGEBYLEX</option>
+            <option value="zrangebyscore">ZRANGEBYSCORE</option>
+            <option value="zrank">ZRANK</option>
+            <option value="zrem">ZREM</option>
+            <option value="zremrangebylex">ZREMRANGEBYLEX</option>
+            <option value="zremrangebyrank">ZREMRANGEBYRANK</option>
+            <option value="zremrangebyscore">ZREMRANGEBYSCORE</option>
+            <option value="zrevrange">ZREVRANGE</option>
+            <option value="zrevrangebylex">ZREVRANGEBYLEX</option>
+            <option value="zrevrangebyscore">ZREVRANGEBYSCORE</option>
+            <option value="zrevrank">ZREVRANK</option>
+            <option value="zscan">ZSCAN</option>
+            <option value="zscore">ZSCORE</option>
+            <option value="zunionstore">ZUNIONSTORE</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-params"><i class="fa fa-server"></i> Params</label>
+        <input type="text" id="node-input-params">
+        <input type="hidden" id="node-input-paramsType">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-block">&nbsp;</label>
+        <input type="checkbox" id="node-config-input-block" style="display:inline-block; width:15px; vertical-align:baseline;"> Block Commands(Force use new connection)
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="dblite-redis-command">
+    <p>Redis Command</p>
+    <p>Execute command inside Redis sending payload array as parameters and return the result as payload.</p>
+</script>
+
+
+<script type="text/javascript">
+    /*global RED*/
+    RED.nodes.registerType('redis-lua-script', {
+        category: 'storage',
+        inputs: 1,
+        outputs: 1,
+        color: "#e97b00",
+        icon: "redis.png",
+        paletteLabel: "dblite redis lua",
+        defaults: {
+            server: {
+                value: "",
+                type: "dblite-redisConfig"
+            },
+            name: {
+                value: ""
+            },
+            keyval: {
+                value: 0,
+                validate: RED.validators.number()
+            },
+            func: {
+                value: "\nreturn nil"
+            },
+            stored: {
+                value: false
+            },
+            block: {
+                value: false
+            }
+        },
+        label: function () {
+            return this.name || "dblite redis Lua";
+        },
+        oneditprepare: function () {
+            var that = this;
+            $("#node-input-keyval").spinner({
+                min: 0
+            });
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-func-editor',
+                mode: 'ace/mode/lua',
+                value: $("#node-input-func").val()
+            });
+            RED.library.create({
+                url: "functions", // where to get the data from
+                type: "function.lua", // the type of object the library is for
+                editor: this.editor, // the field name the main text body goes to
+                mode: "ace/mode/lua",
+                fields: ['name', 'keyval', 'stored']
+            });
+            this.editor.focus();
+        },
+        oneditsave: function () {
+            var annot = this.editor.getSession().getAnnotations();
+            this.noerr = 0;
+            $("#node-input-noerr").val(0);
+            for (var k = 0; k < annot.length; k++) {
+                //console.log(annot[k].type,":",annot[k].text, "on line", annot[k].row);
+                if (annot[k].type === "error") {
+                    $("#node-input-noerr").val(annot.length);
+                    this.noerr = annot.length;
+                }
+            }
+            $("#node-input-func").val(this.editor.getValue());
+            delete this.editor;
+        },
+        oneditresize: function (size) {
+            var rows = $("#dialog-form>div:not(.node-text-editor-row)");
+            var height = $("#dialog-form").height();
+            for (var i = 0; i < rows.size(); i++) {
+                height -= $(rows[i]).outerHeight(true);
+            }
+            var editorRow = $("#dialog-form>div.node-text-editor-row");
+            height -= (parseInt(editorRow.css("marginTop")) + parseInt(editorRow.css("marginBottom")));
+            $(".node-text-editor").css("height", height + "px");
+            this.editor.resize();
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="redis-lua-script">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="Server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-stored" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-stored" style="width: 70%;">Stored Script</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-keyval"><i class="fa fa-random"></i> Keys</label>
+        <input id="node-input-keyval" style="width: 60px; height: 1.7em;" value="0">
+    </div>
+    <div class="form-row" style="margin-bottom: 0px;">
+        <label for="node-input-func"><i class="fa fa-wrench"></i> Lua Script</label>
+        <input type="hidden" id="node-input-func" autofocus="autofocus">
+        <input type="hidden" id="node-input-noerr">
+    </div>
+    <div class="form-row node-text-editor-row">
+        <div style="height: 250px;" class="node-text-editor" id="node-input-func-editor"></div>
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-block">&nbsp;</label>
+        <input type="checkbox" id="node-config-input-block" style="display:inline-block; width:15px; vertical-align:baseline;"> Block Commands(Force use new connection)
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="redis-lua-script">
+    <p>Redis Lua</p>
+    <p>Execute lua script inside Redis sending payload array as parameters and return the result as payload.</p>
+    <p>Options</p>
+    <p>Stored: Set if you want use SCRIPT LOAD and EVALSHA to run script</p>
+    <p>Keys: Number of keys that you send to the lua script</p>
+    <p>Script: Lua script</p>
+    <p>Payload: you need send all keys before, after send all values.</p>
+</script>
+
+
+
+<script type="text/javascript">
+    /*global RED*/
+    RED.nodes.registerType('redis-instance', {
+        category: 'storage',
+        inputs: 0,
+        outputs: 0,
+        color: "#e97b00",
+        icon: "redis.png",
+        paletteLabel: "dblite redis instance",
+        defaults: {
+            server: {
+                value: "",
+                type: "dblite-redisConfig"
+            },
+            name: {
+                value: ""
+            },
+            topic: {
+                value: "redis",
+                required: true
+            },
+            location: {
+                value: "flow",
+                required: true
+            },
+            block: {
+                value: false
+            }
+        },
+        label: function () {
+            return this.name || this.topic || "dblite redis instance";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="redis-instance">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="Server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-location"><i class="fa fa-unlock"></i> Context</label>
+        <select id="node-input-location">
+            <option value="flow" selected>Flow</option>
+            <option value="global">Global</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-block">&nbsp;</label>
+        <input type="checkbox" id="node-config-input-block" style="display:inline-block; width:15px; vertical-align:baseline;"> Block Commands(Force use new connection)
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="redis-instance">
+    <p>Redis Instance</p>
+    <p>Injects a Redis connection on flow or global context.</p> 
+    <p>The Topic is the var name of redis.</p>
+    <p></p>
+</script>

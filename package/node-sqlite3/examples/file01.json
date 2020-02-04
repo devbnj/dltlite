@@ -1,0 +1,14 @@
+{
+    "skel":
+    {"zp0": "Party", "zp1": "Asset", "zp2": "Agreement", "zp3": "Ledger", "zp4": "Dashboard"},
+    "dell":
+    {"clr": "blue", "ip":"localhost", "locn":"Sparta, NJ", "geo":""},
+    "zp0type":
+    [{"name":"Giver"},{"name":"Taker"},{"name":"Witness"},{"name":"Third-Party"},{"name":"Attorney"},{"name":"Referee"}],
+    "zp1type":
+    [{"name":"Tangible"},{"name":"Virtual"},{"name":"Digital"},{"name":"Intangible"}],
+    "zp2type":
+    [{"name":"Binding"},{"name":"Non Binding"},{"name":"Traceable"},{"name":"Policy"}],
+    "config":
+    {"lgr":"/home/devbnjhp/sqlite/sqlite-sync/data/lgr.db", "redis":"47.254.67.33"}
+}
