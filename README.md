@@ -1,48 +1,47 @@
 # dblite
-dblite comprises a 
+dblite is a complete full-stack, microservices package, made of 
 * Flow Engine with Append Only SQLite3, 
+* SHA 512 encryption engine,
 * Redis Pub-Sub, 
 * DBlite (Node-RED) Nodes 
 to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
+Master(s) can be as little as 1 node. Worker(s) can be a minimum of 1 node. Nodes can go upto thousands. It is uncertain at this time to accurately state what the optimum numbers are before any performance degradation is noticed. Devb Inc and Chainbelow would appreciate any inputs from the community on this. Please mark them as issues.
+
 # Working with different Cloud Providers
 
-Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
+* Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
+* First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. 
+* Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
+* The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
 
-First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. 
-
-Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
-
-The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
-
-## New instances 
-### Access worker node from local instance
+## Alibaba Cloud ECS instances 
+* Accessing the worker node from a local machine
 
 <code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.62
 </code>
 
-### master node
+* Accessing the master node
 
 <code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
 </code>
 
-### Add a new user
+* Adding a new user, who has sudo rights
 <pre>
 <code>
 $ adduser devb
-
 $ usermod -aG sudo devb
-
 $ su - devb
 </code>
 </pre>
 
 ## Development
-To develop and implement dblite, you must install Node.JS, and Node-RED along with a few other components.
+* To develop and implement dblite, you must install Node.JS, and Node-RED along with a few other components.
 
-### Install Node.js and Node-RED
+### Installing Node.js and Node-RED in the Ubuntu instances
+<pre>
 <code>
 $ cd ~
 $ sudo apt update
@@ -51,32 +50,47 @@ $ curl -sL https://deb.nodesource.com/setup_10.x | sudo bash
 $ sudo apt-get install -y nodejs
 $ sudo npm install -g --unsafe-perm node-red
 </code>
+</pre>
 
 ### Upgrade Node.js through N 
+<pre>
 <code>
 $ sudo npm install -g n
 $ n 10.16.0
 $ n lts
 </code>
+</pre>
 
-#### To use a default node, just type n
-#### Remove other cached versions:
+* To use a default node.js version, just type 'n'
+* To remove other cached versions:
+
 $ n rm 0.9.4 v0.10.0
 
-#### Remove all cached versions except the current version:
+* Remove all cached versions except the current version:
+
 $ n prune
 
-## Download and build redis
+## Downloading and building redis
+<pre>
+<code>
 $ wget http://download.redis.io/releases/redis-5.0.5.tar.gz
 $ tar xzf redis-5.0.5.tar.gz
 $ cd redis-5.0.5
 $ make
+</code>
+</pre>
 
-## Or, you can download Redis
+## Or, you can download Redis directly
+
+<code>
 $ apt-get install redis-server
+</code>
 
-## Configure Redis
+## Configuring Redis
+
+<code>
 $ ./redis-server redis.conf
+</code>
 
 ## Redis - redis.config file
 bind 127.0.0.1
