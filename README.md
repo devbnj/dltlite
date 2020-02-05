@@ -253,24 +253,40 @@ $ ssh -i ~/[aws-access].pem ec2-user@ec2-35-xxx-xxx-108.compute-1.amazonaws.com
 </code>
 
 ## ec2 Instance 2
+<pre>
+<code>
 $ ssh -i ~/[aws-access].pem ec2-user@ec2-34-xxx-xxx-242.compute-1.amazonaws.com
+</pre>
+</code>
 
-### Install node-js 10
+### Install node-js 10 or LTS
+<pre>
+<code>
 $ sudo yum update
 $ sudo yum install -y gcc gcc-c++ make openssl-devel
 $ curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
 $ sudo yum -y install nodejs
+</pre>
+</code>
 
 ### Install node red
+<pre>
+<code>
 $ sudo npm install -g --unsafe-perm node-red
+</pre>
+</code>
 
 ### Install nginx
+<pre>
+<code>
 $ sudo amazon-linux-extras install nginx1.12 -y
 $ sudo systemctl status nginx
 $ sudo systemctl start nginx
 $ sudo nano /etc/nginx/nginx.conf
+</pre>
+</code>
 
-=====================================
+<pre>
         location /nodeadmin/ {
                 proxy_pass http://localhost:1880/; 
                 proxy_http_version 1.1;
@@ -278,30 +294,47 @@ $ sudo nano /etc/nginx/nginx.conf
                 proxy_set_header Connection "upgrade";
                 proxy_set_header X-Real-IP $remote_addr;
         }
-=====================================
+</pre>
 
 ### Install packages in node-red
+<pre>
+<code>
 $ cd .node-red
 $ npm install ~/sqlite/sqlite-sync
 $ npm install node-red-dashboard
 $ npm install sqlite3
 $ npm install text-encoding
+</pre>
+</code>
 
 ### Install dblite
+<pre>
+<code>
 $ cd ~/sqlite/sqlite-sync
 $ npm install ~/sqlite/sqlite-sync
+</pre>
+</code>
 
 ## Download and build redis
+<pre>
+<code>
 $ wget http://download.redis.io/releases/redis-5.0.5.tar.gz
 $ tar xzf redis-5.0.5.tar.gz
 $ cd redis-5.0.5
 $ make
+</pre>
+</code>
 
 ## Configure redis
+<pre>
+<code>
 $ cd src
 $ nano or [vim] redis.conf
+</pre>
+</code>
 
 ## Redis - redis.config file
+<pre>
 bind 172.31.39.21
 bind 127.0.0.1
 bind 0.0.0.0
@@ -310,16 +343,26 @@ requirepass
 rename-command CONFIG ""
 rename-command FLUSHALL ""
 rename-command FLUSHDB ""
+</pre>
 
 ## Run Redis with the config
+<pre>
+<code>
 $ ./redis-server redis.conf
+</pre>
+</code>
 
 ### Rebuild npm for sqlite3
+<pre>
+<code>
 $ npm install --build-from-source --sqlite_magic="[your magic phrase]"
 
 $ npm install --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src/ --sqlite_magic="[Your magic phrase]"
+</pre>
+</code>
 
 # DataKnox (dblite package) API
+* 
 ## Party Entry
 ### POST
 POST /dataknox/api/party HTTP/1.1
