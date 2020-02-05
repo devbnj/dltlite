@@ -1,13 +1,17 @@
 # dblite
-DBLite comprises a 
+dblite comprises a 
 * Flow Engine with Append Only SQLite3, 
 * Redis Pub-Sub, 
 * DBlite (Node-RED) Nodes 
 to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
 # Working with different Cloud Providers
+
 Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
-First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
+
+First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. 
+
+Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
 
 The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
 
@@ -25,6 +29,7 @@ $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
 </code>
 
 ### Add a new user
+<pre>
 <code>
 $ adduser devb
 
@@ -32,6 +37,7 @@ $ usermod -aG sudo devb
 
 $ su - devb
 </code>
+</pre>
 
 ## Development
 To develop and implement dblite, you must install Node.JS, and Node-RED along with a few other components.
