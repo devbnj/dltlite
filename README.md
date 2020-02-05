@@ -13,10 +13,13 @@ The next step requires you to set up security controls, obtain the pem file from
 
 ## New instances 
 ### Access worker node from local instance
+
 <code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.62
 </code>
+
 ### master node
+
 <code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
 </code>
@@ -24,7 +27,9 @@ $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
 ### Add a new user
 <code>
 $ adduser devb
+
 $ usermod -aG sudo devb
+
 $ su - devb
 </code>
 
