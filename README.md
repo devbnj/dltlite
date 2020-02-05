@@ -207,20 +207,32 @@ $ cp [install-dir]/dotnode-red/* ~/.node-red/
 </code>
 </pre>
 
-## Now you can run node-red with the new installation
+## Now you can run node-red [the dataknox package] with all the changes
 ## Even better, run node-red under PM2
-
+<pre>
+<code>
 $ npm install -g pm2
 $ pm2 start /usr/bin/node-red -- -v
+</code>
+</pre>
+
 
 ## Check the logs to ensure your web-app is properly installed
+<code>
 $ cat /var/log/nginx/access.log
+</code>
 
 ## Dashboard and other changes
+<pre>
+<code>
 $ cd ~/.node-red
 $ npm install node-red-dashboard
+</code>
+</pre>
 
 ## Sqite3 Node.js build
+<pre>
+<code>
 $ cd node-sqlite3
 $ npm install --build-from-source --sqlite_magic="[your magic phrase]"
 
@@ -228,11 +240,17 @@ $ npm config set user 0
 $ npm config set unsafe-perm true
 
 $ npm install sqlite3 --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src --sqlite_magic="[your magic phrase]" --save-dev
+</pre>
+</code>
 
-# Installing in AWS
-## ec2 Instance 1 in aws instances Amazon Linux
+# Installing in AWS ec2 or lightsail instances
+* We installed in the ec2 Amazon Linux instance (master and node) 
+<pre>
+<code>
 $ chmod 400 ~/[aws-access].pem
 $ ssh -i ~/[aws-access].pem ec2-user@ec2-35-xxx-xxx-108.compute-1.amazonaws.com
+</pre>
+</code>
 
 ## ec2 Instance 2
 $ ssh -i ~/[aws-access].pem ec2-user@ec2-34-xxx-xxx-242.compute-1.amazonaws.com
