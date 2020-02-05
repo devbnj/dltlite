@@ -362,8 +362,8 @@ $ npm install --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src/ --sq
 </code>
 
 # DataKnox (dblite package) API
-* About REST APIs - "REST" stands for Representational State Transfer. In this documentation, I will describe the various endpoints available, their methods, parameters, and other details, and you also document sample responses from the endpoints. 
-## Party Data Entry through POST. Ensure you have setup the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
+* About REST APIs - "REST" stands for Representational State Transfer. In this documentation, I will describe the various endpoints available, their methods, parameters, and other details, and you also document sample responses from the endpoints.  
+* Party Data Entry through POST. Ensure you have setup the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
 
 ### POST
 <pre>
@@ -374,13 +374,13 @@ entry: xyz
 Cache-Control: no-cache
 </pre>
 
-#### Headers
+* Headers
 <pre>
 Content-Type:application/json
 entry:xyz
 </pre>
 
-#### JSON Data
+* JSON Data
 <pre>
 <code>
 {"partyname":"John Sire","stdate":"1976-03-02","endate":"","type":"Taker"}
@@ -388,7 +388,7 @@ entry:xyz
 </pre>
 
 ## Asset Data Entry
-### POST
+* POST
 <pre>
 <code>
 POST /dataknox/api/asset HTTP/1.1
@@ -400,9 +400,8 @@ Postman-Token: f2dce699-5f13-894d-54bd-a4226e5c155c
 </pre>
 </code>
 
-#### Headers as above
-
-#### Data
+* Headers as above
+* Data
 <pre>
 <code>
 {"name":"windy1","location":"Sparta, New Jersey","metadata":"","qty":"1","value":"100000","atype":"Tangible"}
@@ -507,4 +506,4 @@ Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
 </pre>
 </code>
 
-dblight and its package dataKnox is (c) &copy; Devb Inc. https://www.devb.com/. All Rights Reserved. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. 
+dblight and its package dataKnox is &copy; Devb Inc. https://www.devb.com/. It is also distributed by Chainbelow Inc, a not-for profit organization. All Rights Reserved. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. DataKnox is commercially marketed through Alontrus Group (USA). DataKnox is supported by eSynergy (India). 
