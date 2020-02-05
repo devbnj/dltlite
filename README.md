@@ -5,10 +5,10 @@ DBLite comprises a
 * DBlite (Node-RED) Nodes 
 to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
-# Working with Cloud Provider. 
+# Working with different Cloud Providers
 Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
 First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
- 
+
 The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
 
 ## New instances 
@@ -17,28 +17,36 @@ The next step requires you to set up security controls, obtain the pem file from
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.62
 </code>
 ### master node
+<code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
+</code>
 
 ### Add a new user
+<code>
 $ adduser devb
 $ usermod -aG sudo devb
 $ su - devb
+</code>
 
 ## Development
-To develop and implement dblite, you'll have to install Node.JS, and Node-RED first.
+To develop and implement dblite, you must install Node.JS, and Node-RED along with a few other components.
 
 ### Install Node.js and Node-RED
+<code>
 $ cd ~
 $ sudo apt update
 $ sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 $ curl -sL https://deb.nodesource.com/setup_10.x | sudo bash
 $ sudo apt-get install -y nodejs
 $ sudo npm install -g --unsafe-perm node-red
+</code>
 
 ### Upgrade Node.js through N 
+<code>
 $ sudo npm install -g n
 $ n 10.16.0
 $ n lts
+</code>
 
 #### To use a default node, just type n
 #### Remove other cached versions:
