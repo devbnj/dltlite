@@ -6,10 +6,9 @@ DBLite comprises a
 to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
 # Working with Cloud Provider. 
-## Two cloud providers are shown here Alibaba Cloud and AWS
-## New Ubuntu 18.0.4 instances, please note - dblite has not been tried with the new Aliyun Linux
-
-Minimum two EC2/ECS instances are required whose IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 | 
+Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
+First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
+ 
 The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
 
 ## New instances 
