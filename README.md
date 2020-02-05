@@ -1,12 +1,14 @@
 # dblite
 dblite is a complete full-stack, microservices package, made of 
-* Flow Engine with Append Only SQLite3, 
+* Flow Engine with Append-Only, Encrypted SQLite3, 
 * SHA 512 encryption engine,
-* Redis Pub-Sub, 
+* Redis Pub-Sub (modified to be encrypted), 
 * DBlite (Node-RED) Nodes 
 to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
-Master(s) can be as little as 1 node. Worker(s) can be a minimum of 1 node. Nodes can go upto thousands. It is uncertain at this time to accurately state what the optimum numbers are before any performance degradation is noticed. Devb Inc and Chainbelow would appreciate any inputs from the community on this. Please mark them as issues.
+Master(s) can be as little as one node. Worker(s) can also be a minimum of one node. The upper limit for Nodes can go upto thousands, limited by how many can participate in a network. It is uncertain at this time to accurately state what the optimum numbers of nodes can be in any private network, before any performance degradation is noticed, I will assume a ratio 1:200 (master:workers) is a safe bet in any network. 
+
+Devb Inc, Chainbelow, Alontrus Group, and eSynergy would appreciate any inputs from the community on this. Please mark such questions / answers as issues.
 
 # Working with different Cloud Providers
 
