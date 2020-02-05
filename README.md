@@ -211,8 +211,8 @@ $ cp [install-dir]/dotnode-red/* ~/.node-red/
 </code>
 </pre>
 
-## Now you can run node-red [the dataknox package] with all the changes
-## Even better, run node-red under PM2
+* You are ready to run the node-red flows with dblite, also packaged as 'dataknox'
+* Even better, you can administer node-red under PM2, to come out of any recovery
 <pre>
 <code>
 $ npm install -g pm2
