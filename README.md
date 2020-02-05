@@ -365,8 +365,11 @@ $ npm install --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src/ --sq
 </pre>
 </code>
 
-# DataKnox (dblite package) API
-* About REST APIs - "REST" stands for Representational State Transfer. In this documentation, I will describe the various endpoints available, their methods, parameters, and other details, and you also document sample responses from the endpoints.  
+# DataKnox / dblite package API
+* dblite has a rich set of REST APIs, that third-party clients can invoke. "REST" stands for Representational State Transfer. This documentation describes the various endpoints available, their invocation methods, parameters, and other details. Sample responses from the endpoints are also documented.
+* We architected dblite around three domains - party, asset and agreement. Party is the human aspect of the transaction and therefore has names and hash-ids of borrowers, lenders, attorneys, witnesses, agents, sellers. Assets are 'stuff' that get exchanged between parties. In any transaction, a party assumes the roles of a 'giver', and the other party becomes the 'taker'. Agreement is a set of policies that bind the parties to an exchange of an asset. It's like a lease agreement between the automobile buyer and the car dealer. But, there are other parties involved like attorney, witnesses, notary, etc.
+
+* Party Data Entry through POST. Ensure you have set up the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
 * Party Data Entry through POST. Ensure you have setup the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
 
 ### POST
