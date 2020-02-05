@@ -362,41 +362,57 @@ $ npm install --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src/ --sq
 </code>
 
 # DataKnox (dblite package) API
-* 
-## Party Entry
+* About REST APIs - "REST" stands for Representational State Transfer. In this documentation, I will describe the various endpoints available, their methods, parameters, and other details, and you also document sample responses from the endpoints. 
+## Party Data Entry through POST. Ensure you have setup the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
+
 ### POST
+<pre>
 POST /dataknox/api/party HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
 Cache-Control: no-cache
+</pre>
 
 #### Headers
+<pre>
 Content-Type:application/json
 entry:xyz
+</pre>
 
-#### Data
+#### JSON Data
+<pre>
+<code>
 {"partyname":"John Sire","stdate":"1976-03-02","endate":"","type":"Taker"}
+</code>
+</pre>
 
-## Asset Entry
+## Asset Data Entry
 ### POST
-
+<pre>
+<code>
 POST /dataknox/api/asset HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
 Cache-Control: no-cache
 Postman-Token: f2dce699-5f13-894d-54bd-a4226e5c155c
+</pre>
+</code>
 
-#### Headers
-As above
+#### Headers as above
 
 #### Data
+<pre>
+<code>
 {"name":"windy1","location":"Sparta, New Jersey","metadata":"","qty":"1","value":"100000","atype":"Tangible"}
+</pre>
+</code>
 
-## Agreement Entry
+## Agreement Data Entry
 ### POST
-
+<pre>
+<code>
 POST /dataknox/api/agreement HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
@@ -405,18 +421,25 @@ Cache-Control: no-cache
 Postman-Token: af47f163-3578-4b23-a599-12fd3e1ba6a9
 
 {"name":"Devbnj","sla":"Immediate","warranty":"Limited","agreed_value":"82000","agtype":"Binding","p_value":"92000","settle":"CASH"}
+</pre>
+</code>
 
-## Get Party, Asset, Agreement for Entry
+## Get Party, Asset, Agreement for Ledger Journal preparation
 ### GET
-
+<pre>
+<code>
 GET /dataknox/api/ledger-entry HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
 Cache-Control: no-cache
 Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
+</pre>
+</code>
 
 #### Response
+<pre>
+<code>
 {
     "party": [
         {
@@ -481,3 +504,7 @@ Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
         }
     ]
 }
+</pre>
+</code>
+
+dblight and its package dataKnox is (c) &copy; Devb Inc. https://www.devb.com/. All Rights Reserved. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. 
