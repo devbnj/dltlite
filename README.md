@@ -1,6 +1,6 @@
 # dblite
 dblite is a complete full-stack, microservices package, made of 
-* Flow Engine with Append-Only, Encrypted SQLite3, 
+* Node.JS Flow Engine with Append-Only, Encrypted SQLite3, 
 * SHA 512 encryption engine,
 * Redis Pub-Sub (modified to be encrypted), 
 * DBlite (Node-RED) Nodes 
