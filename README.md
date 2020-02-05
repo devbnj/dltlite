@@ -1,5 +1,9 @@
 # dblite
-DBLite comprises a Flow Engine with Append Only SQLite3, Redis Pub-Sub, DBlite (Node-RED) Nodes to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation. 
+DBLite comprises a 
+* Flow Engine with Append Only SQLite3, 
+* Redis Pub-Sub, 
+* DBlite (Node-RED) Nodes 
+to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
 
 # Working with Cloud Provider. 
 ## Two cloud providers are shown here Alibaba Cloud and AWS
@@ -10,7 +14,9 @@ The next step requires you to set up security controls, obtain the pem file from
 
 ## New instances 
 ### Access worker node from local instance
+<code>
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.62
+</code>
 ### master node
 $ ssh -i ~/[instance-key].pem root@47.xxx.xx.33
 
