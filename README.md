@@ -506,4 +506,4 @@ Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
 </pre>
 </code>
 
-dblight and its package dataKnox is &copy; Devb Inc. https://www.devb.com/. It is also distributed by Chainbelow Inc, a not-for profit organization. All Rights Reserved. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. DataKnox is commercially marketed through Alontrus Group (USA). DataKnox is supported by eSynergy (India). 
+dblight, packaged and distributed also as dataKnox is &copy; Devb Inc. https://www.devb.com/. It is distributed by Chainbelow Inc, a not-for profit organization. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. DataKnox is commercially marketed through Alontrus Group (USA) and DataKnox is supported by eSynergy (India). 
