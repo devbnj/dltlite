@@ -64,11 +64,15 @@ $ n lts
 * To use a default node.js version, just type 'n'
 * To remove other cached versions:
 
+<code>
 $ n rm 0.9.4 v0.10.0
+</code>
 
-* Remove all cached versions except the current version:
+* Remove other cached versions except the current version:
 
+<code>
 $ n prune
+</code>
 
 ## Downloading and building redis
 <pre>
@@ -93,27 +97,48 @@ $ ./redis-server redis.conf
 </code>
 
 ## Redis - redis.config file
+<pre>
 bind 127.0.0.1
 bind 0.0.0.0
 tcp-keepalive 300
+</pre>
 
 ## Install NGINX
+
+<pre>
+<code>
 $ sudo apt update
 $ sudo apt install nginx
-## Check nginx
+</code>
+</pre>
+
+## Check the NGINX installation
+<pre>
+<code>
 $ sudo systemctl status nginx
 $ sudo chown -R $USER:$USER /var/www
-## If firewall
+</code>
+</pre>
+
+## Setting up a firewall
+<pre>
+<code>
 $ sudo ufw allow 80/tcp
 $ sudo ufw allow 443/tcp
 $ sudo ufw reload
+</code>
+</pre>
 
 ## Configure Nginx for reverse proxy
+<pre>
+<code>
 $ cd /etc/nginx/sites-enabled
 $ nano default
+</code>
+</pre>
 
-## Add the location to the appropriate NGINX config file
-=========================================
+## Adding the 'location' to the appropriate NGINX config file
+<pre>
         location /nodeadmin/ {
                 proxy_pass http://localhost:1880/; 
                 proxy_http_version 1.1;
@@ -129,9 +154,10 @@ $ nano default
                 proxy_set_header Connection "upgrade";
                 proxy_set_header X-Real-IP $remote_addr;
         }
+</pre>
 
-## or for the master
-
+## For the master
+<pre>
         location /dataknox/ {
                 proxy_pass http://localhost:1880/master/;
                 proxy_http_version 1.1;
@@ -147,15 +173,22 @@ $ nano default
                 proxy_set_header Connection "upgrade";
                 proxy_set_header X-Real-IP $remote_addr;
         }
-=========================================
+</pre>        
 
-## Restart NGINX
+## Restarting NGINX to ensure all changes 
+<code>
 $ sudo systemctl restart nginx
-## or
-$ service nginx restart
+</code>
 
-## Install the packages
-###### If .node-red folder does not exist, run node-red and it will be created. This goes for both master and worker
+## or
+<code>
+$ service nginx restart
+</code>
+
+## Installing the dblite packages
+* If .node-red folder does not exist, run node-red and the folder will be created. This goes for both master and worker
+<pre>
+<code>
 $ cp [install-dir] * [to] ~/sqlite/sqlite-sync
 $ cp [install-dir] * [to] ~/sqlite/sqlite-sync
 
@@ -163,10 +196,16 @@ $ cd ~/.node-red
 $ npm i sqlite3
 $ npm install ~/sqlite/sqlite-sync
 $ npm install ~/sqlite/dblite
+</code>
+</pre>
 
-## For .node-red folder
+## For the .node-red folder in both master and worker nodes
+<pre>
+<code>
 $ cp [install-dir]/dotnode-red/mod/* ~/.node-red/mod/
 $ cp [install-dir]/dotnode-red/* ~/.node-red/
+</code>
+</pre>
 
 ## Now you can run node-red with the new installation
 ## Even better, run node-red under PM2
