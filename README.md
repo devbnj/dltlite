@@ -1,18 +1,20 @@
 # dblite
-dblite is a complete full-stack, microservices package, made of 
-* Node.JS Flow Engine with Append-Only, Encrypted SQLite3, 
+dblite is a complete full-stack, microservices package, made of
+* Node.JS Flow Engine with Append-Only, Encrypted SQLite3,
 * SHA 512 encryption engine,
-* Redis Pub-Sub (modified to be encrypted), 
-* DBlite (Node-RED) Nodes 
-to manage a (Few)Masters-(Many)Workers Distributed Ledger and Reconciliation system. 
+* Redis Pub-Sub (modified by our engineers to run encrypted),
 
-Master(s) can be as little as one node. Worker(s) can also be a minimum of one node. The upper limit for Nodes can go upto thousands, limited by how many can participate in a network. It is uncertain at this time to accurately state what the optimum numbers of nodes can be in any private network, before any performance degradation is noticed, I will assume a ratio 1:200 (master:workers) is a safe bet in any network. 
+dblite running on Node-RED specifies nodes (implying the libraries of code meant for Node-RED) to manage a (few) Masters and (many) Workers running a replicated distributed ledger and a software based ledger-reconciliation. The distributed ledger works for any industry like financial, healthcare, hospitality, retail, insurance, manufacturing, automobile etc whose (monetary and non-monetary) transactions occur within a party-asset-agreement triangular spread. 
 
-Devb Inc, Chainbelow, Alontrus Group, and eSynergy would appreciate any inputs from the community on this. Please mark such questions / answers as issues.
+A cluster consisting of master node(s) can become as small as one node. Similarly, cluster of worker(s) can also be a minimum of one node. The upper limit for nodes can go up to thousands, limited by how many can take part in a business-network. It is uncertain at this time, even trying to predict setting an optimum numbers of nodes in any such private business-network, before performance or IP network degradation becomes evident. 
 
-# Working with different Cloud Providers
+I will assume a ratio of 1:200 (master:workers) as a safe bet for any such business-network. Under such network, 30,000 journals can get transacted without any network degradation between simple nodes (shared micro servers) in San Francisco, Virginia, Singapore and Hong Kong. That's 200 nodes operating 25,000 miles apart.
 
-* Installations with two cloud providers are shown here, namely Alibaba Cloud and AWS.
+Devb Inc, Chainbelow Inc, Alontrus Group, and eSynergy would appreciate any information from the community on this. Please mark any such questions / answers as issues.
+
+# Working with different cloud providers installing dblite
+
+* Installations were tried with two cloud providers. The methods used are shown here. The cloud companies are Alibaba Cloud and AWS.
 * First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. 
 * Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
 * The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
