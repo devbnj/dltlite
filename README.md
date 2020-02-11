@@ -12,6 +12,17 @@ I will assume a ratio of 1:200 (master:workers) as a safe bet for any such busin
 
 Devb Inc, Chainbelow Inc, Alontrus Group, and eSynergy would appreciate any information from the community on this. Please mark any such questions / answers as issues.
 
+# Updates 2/11/20
+Demos and Config has been updated to include ledgers for
+Original
+Auction
+Lease
+Lending
+Medical Billing
+Loyalty Rewards
+Agent Commision
+Chat
+
 # Working with different cloud providers installing dblite
 
 * Installations were tried with two cloud providers. The methods used are shown here. The cloud companies are Alibaba Cloud and AWS.
