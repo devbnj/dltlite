@@ -1,8 +1,8 @@
 # dltlite
 dltlite is a complete full-stack, microservices package, made of
-* Node.JS Flow Engine with Append-Only, Encrypted SQLite3,
-* SHA 512 encryption engine,
-* Redis Pub-Sub (modified by our engineers to run encrypted),
+* Node.JS Flow Engine with Append-Only, Encrypted SQLite3
+* SHA 512 encryption engine
+* Redis Pub-Sub (modified by our engineers to run encrypted)
 
 dltlite running on Node-RED specifies nodes (implying the libraries of code meant for Node-RED) to manage a (few) Masters and (many) Workers running a replicated distributed ledger and a software based ledger-reconciliation. The distributed ledger works for any industry like financial, healthcare, hospitality, retail, insurance, manufacturing, automobile etc whose (monetary and non-monetary) transactions occur within a party-asset-agreement triangular spread. 
 
@@ -524,4 +524,4 @@ Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
 </pre>
 </code>
 
-dblight, packaged and distributed also as dltlite is &copy; Devb Inc. https://www.devb.com/. It is distributed by Chainbelow Inc, a not-for profit organization. dblight and dltlite is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. dltlite is commercially marketed through Alontrus Group (USA) and dltlite is supported by eSynergy (India). 
+dltlite is &copy; Devb Inc. https://www.devb.com/. It is distributed by Chainbelow Inc, a not-for profit organization.  
