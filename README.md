@@ -1,32 +1,32 @@
-# dblite
-dblite is a complete full-stack, microservices package, made of
+# dltlite
+dltlite is a complete full-stack, microservices package, made of
 * Node.JS Flow Engine with Append-Only, Encrypted SQLite3,
 * SHA 512 encryption engine,
 * Redis Pub-Sub (modified by our engineers to run encrypted),
 
-dblite running on Node-RED specifies nodes (implying the libraries of code meant for Node-RED) to manage a (few) Masters and (many) Workers running a replicated distributed ledger and a software based ledger-reconciliation. The distributed ledger works for any industry like financial, healthcare, hospitality, retail, insurance, manufacturing, automobile etc whose (monetary and non-monetary) transactions occur within a party-asset-agreement triangular spread. 
+dltlite running on Node-RED specifies nodes (implying the libraries of code meant for Node-RED) to manage a (few) Masters and (many) Workers running a replicated distributed ledger and a software based ledger-reconciliation. The distributed ledger works for any industry like financial, healthcare, hospitality, retail, insurance, manufacturing, automobile etc whose (monetary and non-monetary) transactions occur within a party-asset-agreement triangular spread. 
 
 A cluster consisting of master node(s) can become as small as one node. Similarly, cluster of worker(s) can also be a minimum of one node. The upper limit for nodes can go up to thousands, limited by how many can take part in a business-network. It is uncertain at this time, even trying to predict setting an optimum numbers of nodes in any such private business-network, before performance or IP network degradation becomes evident. 
 
 I will assume a ratio of 1:200 (master:workers) as a safe bet for any such business-network. Under such network, 30,000 journals can get transacted without any network degradation between simple nodes (shared micro servers) in San Francisco, Virginia, Singapore and Hong Kong. That's 200 nodes operating 25,000 miles apart.
 
-Devb Inc, Chainbelow Inc, Alontrus Group, and eSynergy would appreciate any information from the community on this. Please mark any such questions / answers as issues.
+Devb Inc, Chainbelow Inc and eSynergy would appreciate any information from the community on this. Please mark any such questions / answers as issues.
 
-# Updates 2/11/20
-Demos and Config has been updated to include ledgers for
-Original
-Auction
-Lease
-Lending
-Medical Billing
-Loyalty Rewards
-Agent Commision
-Chat
+# Updates 3/11/20
+Demos and Configs include ledgers for
+* Original
+* Auction
+* Lease
+* Lending
+* Medical Billing
+* Loyalty Rewards
+* Agent Commision
+* Chat
 
-# Working with different cloud providers installing dblite
+# Working with different cloud providers installing dltlite
 
 * Installations were tried with two cloud providers. The methods used are shown here. The cloud companies are Alibaba Cloud and AWS.
-* First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dblite has not been tried with the new Aliyun Linux. 
+* First installation is on new Ubuntu 18.0.4 instances in Alibaba Cloud on their 6th gen ECS instances. Please note - dltlite has not been tried with the new Aliyun Linux. 
 * Minimum two EC2/ECS instances are required. In this README, the IP addresses have been masked to ensure their protection. | 47.xxx.xx.62 | 47.xxx.xx.33 |.
 * The next step requires you to set up security controls, obtain the pem file from the console and restart the servers.
 
@@ -53,7 +53,7 @@ $ su - devb
 </pre>
 
 ## Development
-* To develop and implement dblite, you must install Node.JS, and Node-RED along with a few other components.
+* To develop and implement dltlite, you must install Node.JS, and Node-RED along with a few other components.
 
 ### Installing Node.js and Node-RED in the Ubuntu instances
 <pre>
@@ -154,7 +154,7 @@ $ nano default
 
 ## Adding the 'location' to the appropriate NGINX config file
 <pre>
-        location /nodeadmin/ {
+        location /noder/ {
                 proxy_pass http://localhost:1880/; 
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
@@ -162,7 +162,7 @@ $ nano default
                 proxy_set_header X-Real-IP $remote_addr;
         }
 
-        location /dataknox/ {
+        location /dltlite/ {
                 proxy_pass http://localhost:1880/ui/;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
@@ -173,7 +173,7 @@ $ nano default
 
 ## For the master
 <pre>
-        location /dataknox/ {
+        location /dltlite/ {
                 proxy_pass http://localhost:1880/master/;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
@@ -200,7 +200,7 @@ $ sudo systemctl restart nginx
 $ service nginx restart
 </code>
 
-## Installing the dblite packages
+## Installing the dltlite packages
 * If .node-red folder does not exist, run node-red and the folder will be created. This goes for both master and worker
 <pre>
 <code>
@@ -210,7 +210,7 @@ $ cp [install-dir] * [to] ~/sqlite/sqlite-sync
 $ cd ~/.node-red
 $ npm i sqlite3
 $ npm install ~/sqlite/sqlite-sync
-$ npm install ~/sqlite/dblite
+$ npm install ~/sqlite/dltlite
 </code>
 </pre>
 
@@ -222,7 +222,7 @@ $ cp [install-dir]/dotnode-red/* ~/.node-red/
 </code>
 </pre>
 
-* You are ready to run the node-red flows with dblite, also packaged as 'dataknox'
+* You are ready to run the node-red flows with dltlite, also packaged as 'dltlite'
 * Even better, you can administer node-red under PM2, to come out of any recovery
 <pre>
 <code>
@@ -302,7 +302,7 @@ $ sudo nano /etc/nginx/nginx.conf
 </code>
 
 <pre>
-        location /nodeadmin/ {
+        location /noder/ {
                 proxy_pass http://localhost:1880/; 
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
@@ -322,7 +322,7 @@ $ npm install text-encoding
 </pre>
 </code>
 
-### Install dblite
+### Install dltlite
 <pre>
 <code>
 $ cd ~/sqlite/sqlite-sync
@@ -376,16 +376,16 @@ $ npm install --build-from-source --sqlite=/usr/devbnjhp/sqlite/sqlite-src/ --sq
 </pre>
 </code>
 
-# DataKnox / dblite package API
-* dblite has a rich set of REST APIs, that third-party clients can invoke. "REST" stands for Representational State Transfer. This documentation describes the various endpoints available, their invocation methods, parameters, and other details. Sample responses from the endpoints are also documented.
-* We architected dblite around three domains - party, asset and agreement. Party is the human aspect of the transaction and therefore has names and hash-ids of borrowers, lenders, attorneys, witnesses, agents, sellers. Assets are 'stuff' that get exchanged between parties. In any transaction, a party assumes the roles of a 'giver', and the other party becomes the 'taker'. Agreement is a set of policies that bind the parties to an exchange of an asset. It's like a lease agreement between the automobile buyer and the car dealer. But, there are other parties involved like attorney, witnesses, notary, etc.
+# dltlite / dltlite package API
+* dltlite has a rich set of REST APIs, that third-party clients can invoke. "REST" stands for Representational State Transfer. This documentation describes the various endpoints available, their invocation methods, parameters, and other details. Sample responses from the endpoints are also documented.
+* We architected dltlite around three domains - party, asset and agreement. Party is the human aspect of the transaction and therefore has names and hash-ids of borrowers, lenders, attorneys, witnesses, agents, sellers. Assets are 'stuff' that get exchanged between parties. In any transaction, a party assumes the roles of a 'giver', and the other party becomes the 'taker'. Agreement is a set of policies that bind the parties to an exchange of an asset. It's like a lease agreement between the automobile buyer and the car dealer. But, there are other parties involved like attorney, witnesses, notary, etc.
 
 * Party Data Entry through POST. Ensure you have set up the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
 * Party Data Entry through POST. Ensure you have setup the Master Node to accept HTTP and JSON posts. I have added a sample Header Entry to manage credentials, feel free to change them in your setup.
 
 ### POST
 <pre>
-POST /dataknox/api/party HTTP/1.1
+POST /dltlite/api/party HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
@@ -409,7 +409,7 @@ entry:xyz
 * POST
 <pre>
 <code>
-POST /dataknox/api/asset HTTP/1.1
+POST /dltlite/api/asset HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
@@ -430,7 +430,7 @@ Postman-Token: f2dce699-5f13-894d-54bd-a4226e5c155c
 ### POST
 <pre>
 <code>
-POST /dataknox/api/agreement HTTP/1.1
+POST /dltlite/api/agreement HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
@@ -445,7 +445,7 @@ Postman-Token: af47f163-3578-4b23-a599-12fd3e1ba6a9
 ### GET
 <pre>
 <code>
-GET /dataknox/api/ledger-entry HTTP/1.1
+GET /dltlite/api/ledger-entry HTTP/1.1
 Host: 47.xxx.xx.33
 Content-Type: application/json
 entry: xyz
@@ -524,4 +524,4 @@ Postman-Token: caea1a7d-ff85-bd63-ec9d-d4f9b243e085
 </pre>
 </code>
 
-dblight, packaged and distributed also as dataKnox is &copy; Devb Inc. https://www.devb.com/. It is distributed by Chainbelow Inc, a not-for profit organization. dblight and dataknox is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. DataKnox is commercially marketed through Alontrus Group (USA) and DataKnox is supported by eSynergy (India). 
+dblight, packaged and distributed also as dltlite is &copy; Devb Inc. https://www.devb.com/. It is distributed by Chainbelow Inc, a not-for profit organization. dblight and dltlite is distributed under a limited GPL license. If you or a entity/corporation is using it for any commercial purposes, a commercial license applies. dltlite is commercially marketed through Alontrus Group (USA) and dltlite is supported by eSynergy (India). 
