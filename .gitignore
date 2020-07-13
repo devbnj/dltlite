@@ -102,3 +102,13 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Mac finder artifacts
+.DS_Store
+.gitignore
+
+# Temp Files
+*.tmp
+run.sh
+build.sh
+package.json.lock
