@@ -14,7 +14,7 @@ module.exports = {
     //tlsConfigDisableLocalFiles: true,
     //debugUseColors: true,
 
-    flowFile: 'flows_devbnjhp.json',
+    flowFile: 'flows_master.json',
 
     //flowFilePretty: true,
     //credentialSecret: "a-secret-key",
@@ -92,10 +92,10 @@ module.exports = {
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
 	fsv: require("fs"),
-        hashnsalt:require("/home/devb/.node-red/mod/hashnsalt.js"),
-        dlcrypto:require("/home/devb/.node-red/mod/dlcrypto.js"),
-        dblite3:require("sqlite3"),
-        tcode:require("text-encoding")
+        hashnsalt:require("./mod/hashnsalt.js"),
+        dlcrypto:require("./mod/dlcrypto.js")
+        // dblite3:require("sqlite3"),
+        // tcode:require("text-encoding")
     },
     // `global.keys()` returns a list of all properties set in global context.
     // This allows them to be displayed in the Context Sidebar within the editor.
