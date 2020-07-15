@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<title>dltlite :: Distributed Ledger</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('/img/dlt01.jpg');
+  min-height: 100%;
+  background-position: left;
+  background-size: cover;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top">DLTLITE</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center">Distributed Ledger</p>
+  </div>
+  <div class="w3-display-bottommiddle w3-center w3-padding-large w3-xlarge">
+    <a class="w3-button w3-orange w3-hover-white w3-center" href="master/">Master Node</a> 
+  </div>
+</div>
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <h2>dltlite * sql * append only * distributed ledger * encrypted * self replicating</h2>
+      <h5>Specifications, <span class="w3-opacity">March 11, 2020</span></h5>
+      <h5>The Problem</h5>
+      <ul class="w3-ul w3-card-4">
+        <li><img src="img/prob1.png" class="w3-bar-item w3-circle" style="width:85px"> Need for low cost and easy to understand data transportation service</li>
+        <li><img src="img/prob3.jpg" class="w3-bar-item w3-circle" style="width:85px"> Reduce costs and manage the demand of the underserved segment of data transportation and distribution</li>
+      </ul>
+      <p><img src="img/dlt03.jpg" alt="dltlite" class="w3-image" /></p>
+      <h3><b>The Solution</b></h3>
+      <ul class="w3-ul w3-card-4">
+        <li><img src="img/soln1.png" class="w3-bar-item w3-circle" style="width:85px"> Allows the user to create and maintain multiple networks with multiple channels (SmartPhones, Internet, IoT devices) in a highly safe environment. The small footprint in DataKNOX helps in reducing data and security volatility.</li>
+        <li><img src="img/prob2.jpg" class="w3-bar-item w3-circle" style="width:85px"> Even though your ledger can grow immensely over time, cold storage mechanism in DataKNOX enables the network to run efficiently by pushing older data into vaults, keeping the nodes and network as efficient as it was new.</li>
+        <li><img src="img/soln1.png" class="w3-bar-item w3-circle" style="width:85px"> Users can conveniently add journals into the ledger ‘lake’. Multiple copies will minimize data corruption or accidental deletion risks and run adhoc queries at any point in the lifecycle of the ledger.</li>
+        <li><img src="img/prob2.jpg" class="w3-bar-item w3-circle" style="width:85px"> Product users can conveniently audit, track, manage and reconcile ledger entries using ‘analytics’</li>
+      </ul>
+      <h4>dltlite is an open source distributed datafile system with high encryption.</h4> 
+      <p>Unlike blockchain, dltlite does not have a data structure in blocks. 
+      A distributed ledger in our case, is a database spread across multiple sites, regions, and / or participants. 
+      This distributed ledger model used in dltlite sounds exactly how you envision a blockchain solution. 
+      The technology in this section derives from our well thought out requirements and motivation. 
+      dltlite was built extending a few known open source products:</p>
+      <ul class="w3-ul w3-hoverable w3-card-4">
+        <li><img src="img/nginx.png" class="w3-bar-item w3-circle" style="width:85px"> Nginx (TLS) for Reverse Proxy</li>
+        <li><img src="img/nodejs.svg" class="w3-bar-item w3-circle" style="width:85px"> Node.JS with Node-RED (TLS), a few encryption/decryption and hashing functions</li>
+        <li><img src="img/dashbrd.png" class="w3-bar-item w3-circle" style="width:85px"> Open source dashboard and charting functions</li>
+        <li><img src="img/sqlite3.png" class="w3-bar-item w3-circle" style="width:85px"> SQLite3 append only embedded database</li>
+        <li><img src="img/redis.png" class="w3-bar-item w3-circle" style="width:85px"> REDIS (fully encrypted), for Pub-Sub (with encryption)</li>
+        <li><img src="img/api.png" class="w3-bar-item w3-circle" style="width:85px"> API - RESTful (JSON only)</li>
+        <li><img src="img/data.png" class="w3-bar-item w3-circle" style="width:85px"> Data - Encrypted at rest, in motion and in transient situations</li> 
+      </ul>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-white w3-padding-64">
+<a href="#home" class="w3-button w3-black">To the top</a>
+<div>
+  <p class="w3-center">
+	  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.devb.com">
+	  <img src="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-facebook.svg" alt="Facebook"/></a>&nbsp;
+	  <a target="_blank" href="https://plus.google.com/share?url=http://www.devb.com">
+	  <img src="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-google-plus.svg" alt="Google Plus"/></a>&nbsp;
+	  <a target="_blank" href="https://github.com/devbnj"><img src="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-github.svg" alt="Github" /></a>&nbsp;
+	  <a target="_blank" href="https://www.linkedin.com/company/devb-inc/"><img src="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-linkedin.svg" alt="LinkedIn" /></a>&nbsp;
+	  <a target="_blank" href="https://twitter.com/intent/tweet?text=Use self publish techniques to create books, sites and blogs through http://www.devb.com">
+	  <img src="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-social-twitter.svg" alt="Twitter"/>
+	  </a>
+  </p>
+</div>
+  <p>Portions Copyright - Chainbelow Inc. https://www.chainbelow.org. A non-profit organization.</p>
+  <p>Created by Devb Inc. &copy; Copyright 2019-2020 Devb Inc. https://www.devb.com. All Rights Reserved</p>
+  <p>Marketed and serviced as DataKnox by Alontrus Group. <a href="https://www.alontrus.com/" target="_blank">https://www.alontrus.com/</a></p>
+  <p><span class="w3-teal">Disclaimer</span> – Chainbelow.org, Devb.com or its affiliate site Tigersof.com 
+  do not guarantee the accuracy or reliability of any of the information, 
+  content or advertisements contained in, resulting from, or linked to this website. 
+  Devb.com reserves the right, at its sole discretion and without any obligation, to make improvements to, 
+  or correct any error or omissions in any portion of the service or the materials.  
+  No warranties are made as to the correctness of the service, materials or products. 
+  Chainbelow, Devb, and TigersOf or any affiliated site expressly disclaim any and all warranties, expressed or implied. 
+  In no event shall Chainbelow, Devb, or Tigersof be liable for any direct, indirect, incidental, punitive or 
+  consequential damages of any kind whatsoever with respect to its service, materials and products.
+  </p>  
+  <p class="w3-small">Copyrights and Trademarks acknowledged - AWS SDK&reg; is a TM of AWS. Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. 
+  Docker, Linux, Amazon Linux, Alibaba Cloud, Ubuntu, REDIS, Kafka, Node-RED are registered TMs of different organizations.</p> 
+</footer>
+
+<div class="w3-bottom">
+  <div class="w3-bar w3-light-gray w3-card-2 w3-padding-small" id="cookies">
+  <p>While using this site, you agree to have read and accepted our terms of use, 
+    cookie and privacy policy.</p>
+  </div>
+</div>
+
+</body>
+</html>

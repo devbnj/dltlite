@@ -112,3 +112,6 @@ dist
 run.sh
 build.sh
 package.json.lock
+docker.md
+exec.sh
+redis.conf

@@ -1,7 +1,7 @@
-var fs = require("fs");
+// var fs = require("fs");
 
 module.exports = {
-    uiPort: process.env.PORT || 1880,
+    uiPort: process.env.PORT || 2880,
     //uiHost: "127.0.0.1",
     mqttReconnectTime: 15000,
     serialReconnectTime: 15000,
@@ -14,7 +14,7 @@ module.exports = {
     //tlsConfigDisableLocalFiles: true,
     //debugUseColors: true,
 
-    flowFile: 'flows_master.json',
+    //flowFile: 'flows_master.json',
 
     //flowFilePretty: true,
     //credentialSecret: "a-secret-key",
@@ -29,14 +29,14 @@ module.exports = {
 
     //ui: { path: "ui" },
 
-    adminAuth: {
-        type: "credentials",
-        users: [{
-            username: "admindb",
-            password: "$2a$08$hnUoV8.ggJoUMlzOuskk6e8tTlYLj7GqqkQwyWf0F3qJoDvZNZjXe",
-            permissions: "*"
-        }]
-    },
+    //adminAuth: {
+    //    type: "credentials",
+    //    users: [{
+    //        username: "admindb",
+    //        password: "$2a$08$hnUoV8.ggJoUMlzOuskk6e8tTlYLj7GqqkQwyWf0F3qJoDvZNZjXe",
+    //        permissions: "*"
+    //    }]
+    //},
 
     //httpNodeAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
     //httpStaticAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
@@ -91,10 +91,10 @@ module.exports = {
         // os:require('os'),
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
-	fsv: require("fs"),
+	    fsv: require("fs"),
         hashnsalt:require("./mod/hashnsalt.js"),
-        dlcrypto:require("./mod/dlcrypto.js")
-        // dblite3:require("sqlite3"),
+        dlcrypto:require("./mod/dlcrypto.js"),
+        dblite3:require("sqlite3")
         // tcode:require("text-encoding")
     },
     // `global.keys()` returns a list of all properties set in global context.

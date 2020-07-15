@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>dataknox dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-file {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-{{#dell}}{{clr}}{{/dell}}" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo"><img src="https://www.chainbelow.org/img/dataknox_logo.png" class="w3-image w3-grayscale" style="width:33%" /></h1>
+  <p class="w3-xlarge">provenance * append only * high performance * encrypted * immutable</p>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+
+    <div class="w3-twothird">
+      <h1>dataknox dashboard</h1>
+      <h5 class="w3-padding-32">Actual vs Asset and Actual vs Agreed.</h5>
+        <form class="w3-container w3-card-4" id="formco" name="formco" action="zp9config" method="POST">
+        <label class="w3-text-black">Choose Asset and Agreed from all transactions</label>
+        <p><select class="w3-select" name="txasset" id="txasset" required>
+            <option value="" disabled selected>Choose asset</option>
+            {{#payload}}
+            {{#asset}}
+            <option value="{{HASHID}}">{{NAME}}</option>
+            {{/asset}}
+            {{/payload}}
+        </select></p>
+        <p><select class="w3-select" name="txagree" id="txagree" required>
+            <option value="" disabled selected>Choose agreement</option>
+            {{#payload}}
+            {{#agree}}
+            <option value="{{HASHID}}">{{NAME}}</option>
+            {{/agree}}
+            {{/payload}}
+        </select></p>
+        <button class="w3-btn w3-xtra-large w3-red" id="cobtn">Fetch</button>
+         
+        </form>
+    </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-file w3-padding-32 w3-text-red"></i>
+    </div>
+
+    <div class="w3-container w3-padding-64">
+      <div id="chart_div" style="width: 800px; height: 128px;"></div>
+    </div>
+  </div>
+</div>
+
+ 
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Copyright 2019, Chainbelow Inc. All Rights Reserved.</h1>
+    <h4>Chainbelow is a not for profit organization.</h4>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// document on load
+$(document).ready( () => {
+});
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load('current', {'packages':['gauge']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['Asset', 80],
+    ['Agreed', 55],
+    ['TransX', 45]
+  ]);
+
+  var options = {
+    width: 600, height: 320,
+    redFrom: 0, redTo: 50,
+    yellowFrom:50, yellowTo: 90,
+    greenFrom:90, greenTo:100,
+    minorTicks: 5
+  };
+
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+  data.setValue(0, 1, 20);
+  data.setValue(1, 1, 30);
+  data.setValue(2, 1, 50);
+  chart.draw(data, options);
+}
+
+</script>
+</body>
+
+</html>
+

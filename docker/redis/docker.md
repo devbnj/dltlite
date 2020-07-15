@@ -1,6 +1,7 @@
 # Master
 docker build . -t node-master:1
-docker run -it -p 1880:1880 -e FLOWS=flows_master.json -v `pwd`:/data node-master:1
+docker run -it -p 1880:1880 --name "node" node-master:1
+docker run -it -p 1880:1880 --network host --name "node" -e FLOWS=flows_master.json -v `pwd`:/data node-master:1
 # docker pull redis
 
 # Redis

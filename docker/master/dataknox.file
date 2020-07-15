@@ -1,0 +1,118 @@
+{
+    "co": {
+        "name": "chainbelow",
+        "logo": ""
+    },
+    "skel": {
+        "zp0": "Party",
+        "zp1": "Asset",
+        "zp2": "Agreement",
+        "zp3": "Ledger",
+        "zp4": "Dashboard"
+    },
+    "dell": {
+        "clr": "blue",
+        "ip": "localhost",
+        "locn": "NYC, NY",
+        "geo": ""
+    },
+    "zp0type": [
+        {
+            "name": "Giver",
+            "orig": "Giver"
+        },
+        {
+            "name": "Taker",
+            "orig": "Taker"
+        },
+        {
+            "name": "Witness",
+            "orig": "Witness"
+        },
+        {
+            "name": "Third-Party",
+            "orig": "Third-Party"
+        },
+        {
+            "name": "Attorney",
+            "orig": "Attorney"
+        },
+        {
+            "name": "Referee",
+            "orig": "Referee"
+        }
+    ],
+    "zp1type": [
+        {
+            "name": "Tangible",
+            "orig": "Tangible"
+        },
+        {
+            "name": "Virtual",
+            "orig": "Virtual"
+        },
+        {
+            "name": "Digital",
+            "orig": "Digital"
+        },
+        {
+            "name": "Intangible",
+            "orig": "Intangible"
+        },
+        {
+            "name": "Loyalty",
+            "orig": "Loyalty"
+        }
+    ],
+    "zp2type": [
+        {
+            "name": "Binding",
+            "orig": "Binding"
+        },
+        {
+            "name": "Non Binding",
+            "orig": "Non Binding"
+        },
+        {
+            "name": "Traceable",
+            "orig": "Traceable"
+        },
+        {
+            "name": "Policy",
+            "orig": "Policy"
+        }
+    ],
+    "zp2settle": [
+        {
+            "name": "Cash",
+            "orig": "Cash"
+        },
+        {
+            "name": "Credit",
+            "orig": "Credit"
+        },
+        {
+            "name": "Points",
+            "orig": "Points"
+        },
+        {
+            "name": "Foreign Curr",
+            "orig": "Foreign Curr"
+        },
+        {
+            "name": "Barter",
+            "orig": "Barter"
+        },
+        {
+            "name": "Exchange",
+            "orig": "Exchange"
+        }
+    ],
+    "zp3": {
+        "giver": "giver",
+        "taker": "taker",
+        "asset": "asset",
+        "agreement": "agreement"
+    }
+}        
+        
