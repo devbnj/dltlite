@@ -1,0 +1,69 @@
+# ######################################
+# apacl - asset party agreement 
+#         contractual language
+#         copyright 2020 devb.com
+#         license apache 2
+# ######################################
+
+object:
+    - quality: [PURE, MOVING, INERT]
+
+location:
+    - latitude: real
+    - longitude: real
+    - elevation: real
+    - street: string
+    - city: string
+    - postalcode: string
+    - state: string
+    - country: string
+
+name:
+    - firstname: string
+    - lastname: string
+    - middlename: string
+    - alias: string
+
+company:
+    - name: string
+    - alias: string
+    - representative: name
+    
+party:
+    - type: [PARTY, COMPANY, TRUST, ENTITY]
+    - partyname: name
+    - companyname: company
+    - address: location
+    - traits: quality
+    - age: integer
+    - dateofbirth: datetime
+    - status: [ACTIVE, INACTIVE, EXPIRED, DELETED]
+
+asset:
+    - type: [TANGIBLE, ABSTRACT]
+    - assetname: string
+    - assetlocation: location
+    - traits: quality
+    - startdate: datetime
+    - enddate: datetime
+    - status: [ACTIVE, INACTIVE, DAMAGED, EXPIRED, DELETED]
+    - value: double
+    - perceivedvalue: double
+    - sellingprice: double
+    - quantity: double
+
+agreement:
+    - type: [NONBINDING, BINDING]
+    - name: string
+    - giver: party
+    - taker: party
+    - referee: party
+    - product: asset
+    - agreedvalue: double
+
+transaction:
+    - type: [MONETARY, NONMONETARY]
+    - contract: agreement
+    - value: double
+    - unvalue: string
+

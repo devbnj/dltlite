@@ -3,6 +3,7 @@ dltlite is a complete full-stack, dockerized microservices package, made of
 * Node.JS (latest) Flow Engine with Append-Only, Encrypted SQLite3
 * SHA 512 encryption engine
 * Redis (latest) Pub-Sub (modified by our engineers to run encrypted)
+* Introducing APACL - asset party agreement contractual language - a new new YAML construct for any blockchains. 
 
 dltlite running on Node-RED specifies nodes (implying the libraries of code meant for Node-RED) to manage a (few) Masters and (thousands of) Workers running a replicated distributed ledger and a software based ledger-reconciliation. The distributed ledger works for any industry like financial, healthcare, hospitality, retail, insurance, manufacturing, automobile etc whose (monetary and non-monetary) transactions occur within a party-asset-agreement triangular spread. 
 
